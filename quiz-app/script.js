@@ -20,6 +20,7 @@ const quizData = [
         a : 'Neşeli Midilli (Joyful Pony)',
         b : 'Dans Eden Midilli (Dancing Pony)',
         c : 'Şahlanan Midilli (Prancing Pony)',
+        d : 'Tatlı Midilli (Sweet Pony)',
         correct : 'c'
     },
     {
@@ -40,6 +41,9 @@ const quizData = [
     }
 ]
 
+
+const answerEls = document.querySelectorAll('.answer');
+const quiz= document.getElementById('quiz');
 const questionEL = document.getElementById('question');
 const  a_text = document.getElementById('a_text'); 
 const  b_text = document.getElementById('b_text');
@@ -49,11 +53,13 @@ const submitBtn = document.getElementById('btn');
 
 
 let currentQuiz = 0;
-
+let score = 0;
 
 loadQuiz();
 
 function loadQuiz() {
+
+    deselectAnswers();
 
     const currentQuizData = quizData[currentQuiz];
     questionEL.innerText = currentQuizData.question;
@@ -63,8 +69,54 @@ function loadQuiz() {
     d_text.innerText = currentQuizData.d;
 }
 
-submitBtn.addEventListener("click", () => {
-    currentQuiz++;
+function getSelected() {
+    
 
-    loadQuiz();
-})
+    let answer = undefined;
+
+    answerEls.forEach(answerEls => {
+       if(answerEls.checked){
+        answer = answerEls.id;
+       }
+    });
+
+    return answer;
+}
+
+    function deselectAnswers() {
+        answerEls.forEach((answerEls )=> {
+            answerEls.checked = false;
+        });
+
+    }
+
+
+
+
+
+submitBtn.addEventListener("click", () => {
+
+    // check to see the answer
+    const answer = getSelected();
+
+    console.log(answer)
+
+    if(answer) {
+
+        if(answer === quizData[currentQuiz].correct){
+            score++;
+        }
+
+
+         currentQuiz++;
+        if(currentQuiz < quizData.length){
+            loadQuiz();
+        } else {
+           quiz.innerHTML = `<h2>Bitirdiiin 🎉🎉  ${score}/${quizData.length}</h2>`
+        }
+    }
+});
+
+
+
+
