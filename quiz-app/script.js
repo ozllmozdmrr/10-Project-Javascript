@@ -112,7 +112,9 @@ submitBtn.addEventListener("click", () => {
         if(currentQuiz < quizData.length){
             loadQuiz();
         } else {
-           quiz.innerHTML = `<h2>Bitirdiiin 🎉🎉  ${score}/${quizData.length}</h2>`
+           quiz.innerHTML = `<h2>Bitirdiiin 🎉🎉  ${score}/${quizData.length}</h2>  
+           
+           <button onClick="location.reload()">Tekrar Dene</button>`;
         }
     }
 });

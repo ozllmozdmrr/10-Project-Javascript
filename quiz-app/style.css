@@ -50,7 +50,7 @@ ul li label {
 }
 
 button {
-    background-color: #4CAF50; /* Green */
+    background-color: #ff0f7b; 
     border: none;
     border-radius: 0 0 10px 10px;
     color: white;
@@ -62,5 +62,13 @@ button {
 }
 
 button:hover {
-    background-color: coral;
+    background-color: #ff930f; /* Green */
+}
+
+button:focus {
+    
+       background-color: #ff0f7b; 
+
+
+    outline: none;
 }
